@@ -1,0 +1,18 @@
+x = int(input(" 猜數字,請在0-100之間 :"))
+
+import random
+
+random.randrange(1, 100)
+y = int(random)
+
+if x == y :
+    print("你猜到了")
+else:
+    if 0 < x < y :
+        print("再大一點")
+    else:
+        if 100 > x > y :
+            print("再小一點")
+        else:
+            if x < 0 or x > 100 :
+                print("請在0-100之間")

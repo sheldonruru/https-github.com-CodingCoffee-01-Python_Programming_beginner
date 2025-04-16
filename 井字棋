@@ -1,0 +1,22 @@
+board = [
+    [" ", " ", " "],
+    [" ", " ", " "],
+    [" ", " ", " "]
+]
+
+def print_board():
+    for row in board:
+        print("|".join(row))
+        print("-----")
+print_board()
+
+row = int(input("請輸入列內(0-2)"))
+col = int(input("請輸入欄內(0-2)"))
+board[row][col] = "X"
+print_board()
+
+current_player = "X"
+
+for turn in range(9):
+    print_board()
+    print

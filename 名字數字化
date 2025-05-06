@@ -1,0 +1,18 @@
+def convert_name_to_numbers():
+    while True:
+        名字 = input("請輸入你的名字（1～20 個字，全部為小寫英文字母）：").strip()
+
+        if not 名字:
+            print("錯誤：請勿輸入空白，請重新輸入。")
+        elif len(名字) > 20:
+            print("錯誤：名字太長，請限制在 20 個字元以內。")
+        elif not 名字.isalpha() or not 名字.islower():
+            print("錯誤：只能輸入小寫英文字母（a～z），請重新輸入。")
+        else:
+            數字列表 = [偵測字母(字) for 字 in 名字]
+            print(f"名字：{名字}")
+            print(f"每個字母對應的數字：{數字列表}")
+            break
+
+# 執行
+convert_name_to_numbers()

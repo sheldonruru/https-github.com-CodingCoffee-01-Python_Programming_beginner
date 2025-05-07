@@ -1,6 +1,7 @@
 import random
 
 def play_game():
+    測試模式 = input("是否開啟測試模式？(y/n)：").lower() == 'y'
     數字下限 = 1
     player1 = input("請輸入你的玩家名稱 : ")
 
@@ -36,6 +37,10 @@ def play_game():
         AI猜測範圍 = 數字上限 // 10
 
     終極密碼 = random.randint(數字下限, 數字上限)
+
+    if 測試模式:
+        print(f"[測試模式] 本局終極密碼是：{終極密碼}")
+
     print(f"\n{player1} 終極密碼開始囉！")
     print(f"終極密碼範圍是 {數字下限}-{數字上限}")
     print("比AI還快猜到密碼就獲勝！")
@@ -57,9 +62,21 @@ def play_game():
                 print("請再大一點")
                 數字下限 = 玩家猜測 + 1
 
-            AI猜低 = max(數字下限, 終極密碼 - AI猜測範圍)
-            AI猜高 = min(數字上限, 終極密碼 + AI猜測範圍)
-            AI猜測 = random.randint(AI猜低, AI猜高)
+            範圍中點 = (數字下限 + 數字上限) // 2
+
+            if AI強度 == 1:
+                AI猜測 = random.randint(數字下限, 數字上限)
+            elif AI強度 == 2:
+                AI偏差 = max(1, (數字上限 - 數字下限) // 5)
+                猜測下限 = max(數字下限, 範圍中點 - AI偏差)
+                猜測上限 = min(數字上限, 範圍中點 + AI偏差)
+                AI猜測 = random.randint(猜測下限, 猜測上限)
+            else:
+                AI偏差 = max(1, (數字上限 - 數字下限) // 10)
+                猜測下限 = max(數字下限, 範圍中點 - AI偏差)
+                猜測上限 = min(數字上限, 範圍中點 + AI偏差)
+                AI猜測 = random.randint(猜測下限, 猜測上限)
+
             print(f"AI猜的是 {AI猜測}")
 
             if AI猜測 == 終極密碼:
@@ -77,7 +94,7 @@ while True:
     play_game()
     while True:
         try:
-            再次遊玩 = int(input("\n要再玩一次嗎？輸入1表示要，輸入2表示不要:"))
+            再次遊玩 = int(input("\n要再玩一次嗎？輸入 1 表示要，輸入 2 表示不要："))
             if 再次遊玩 == 1:
                 print("\n重新開始遊戲...\n")
                 break
@@ -88,3 +105,4 @@ while True:
                 print("請輸入數字1或2")
         except ValueError:
             print("輸入格式錯誤，請輸入數字1或2")
+

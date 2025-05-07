@@ -1,0 +1,90 @@
+import random
+
+def play_game():
+    數字下限 = 1
+    player1 = input("請輸入你的玩家名稱 : ")
+
+    while True:
+        try:
+            範圍 = int(input(f"{player1}，請輸入你選擇的範圍，1. 1-100 2. 1-1000 (請輸入1或2): "))
+            if 範圍 == 1:
+                數字上限 = 100
+                break
+            elif 範圍 == 2:
+                數字上限 = 1000
+                break
+            else:
+                print("輸入錯誤，請輸入數字1或2")
+        except ValueError:
+            print("輸入格式錯誤，請輸入數字1或2")
+
+    while True:
+        try:
+            AI強度 = int(input(f"{player1}，請輸入你選擇的AI強度，1.弱 2.一般 3.強: "))
+            if AI強度 in [1, 2, 3]:
+                break
+            else:
+                print("輸入錯誤，請輸入數字1、2或3")
+        except ValueError:
+            print("輸入格式錯誤，請輸入數字1、2或3")
+
+    if AI強度 == 1:
+        AI猜測範圍 = 數字上限
+    elif AI強度 == 2:
+        AI猜測範圍 = 數字上限 // 5
+    else:
+        AI猜測範圍 = 數字上限 // 10
+
+    終極密碼 = random.randint(數字下限, 數字上限)
+    print(f"\n{player1} 終極密碼開始囉！")
+    print(f"終極密碼範圍是 {數字下限}-{數字上限}")
+    print("比AI還快猜到密碼就獲勝！")
+
+    while True:
+        try:
+            玩家猜測 = int(input(f"\n{player1}，請輸入你要猜的數字（{數字下限}-{數字上限}）: "))
+            if not (數字下限 <= 玩家猜測 <= 數字上限):
+                print(f"請輸入{數字下限}-{數字上限}內的數字")
+                continue
+
+            if 玩家猜測 == 終極密碼:
+                print("太厲害了！你猜中了答案！")
+                break
+            elif 玩家猜測 > 終極密碼:
+                print("請再小一點")
+                數字上限 = 玩家猜測 - 1
+            else:
+                print("請再大一點")
+                數字下限 = 玩家猜測 + 1
+
+            AI猜低 = max(數字下限, 終極密碼 - AI猜測範圍)
+            AI猜高 = min(數字上限, 終極密碼 + AI猜測範圍)
+            AI猜測 = random.randint(AI猜低, AI猜高)
+            print(f"AI猜的是 {AI猜測}")
+
+            if AI猜測 == 終極密碼:
+                print("噢不！AI 猜中了終極密碼！")
+                break
+            elif AI猜測 > 終極密碼:
+                數字上限 = AI猜測 - 1
+            else:
+                數字下限 = AI猜測 + 1
+
+        except ValueError:
+            print("請輸入正確的整數！")
+
+while True:
+    play_game()
+    while True:
+        try:
+            再次遊玩 = int(input("\n要再玩一次嗎？輸入1表示要，輸入2表示不要:"))
+            if 再次遊玩 == 1:
+                print("\n重新開始遊戲...\n")
+                break
+            elif 再次遊玩 == 2:
+                print("感謝遊玩！掰掰～")
+                exit()
+            else:
+                print("請輸入數字1或2")
+        except ValueError:
+            print("輸入格式錯誤，請輸入數字1或2")

@@ -1,0 +1,37 @@
+import random
+
+player1 = input("請輸入你的玩家名稱: ")
+
+答案 = random.sample(range(1, 11), 3)
+
+print(f"{player1} 猜數字遊戲開始囉！")
+print("範圍是 1-10")
+print("只要猜到三個數字的確切數字就獲勝！")
+print("如果猜對 1 個數字且猜對位子就是 1A，猜對 2 個數字且猜對位子就是 2A，以此類推")
+print("如果猜對 1 個數字但位子猜錯就是 1B，猜對 2 個數字但位子猜錯就是 2B，以此類推")
+
+while True:
+    guess = input("請輸入你猜的三個數字，用逗號分隔 (例如：1,2,3): ")
+    try:
+        guess_list = [int(x.strip()) for x in guess.split(",")]
+        if len(guess_list) != 3:
+            print("請輸入三個數字！")
+            continue
+    except ValueError:
+        print("請輸入正確的數字格式！")
+        continue
+
+    A = 0  
+    B = 0  
+
+    for i in range(3):
+        if guess_list[i] == 答案[i]:
+            A += 1
+        elif guess_list[i] in 答案:
+            B += 1
+
+    print(f"結果：{A}A{B}B")
+
+    if A == 3:
+        print(f"恭喜 {player1} 猜對了！答案是 {答案}")
+        break

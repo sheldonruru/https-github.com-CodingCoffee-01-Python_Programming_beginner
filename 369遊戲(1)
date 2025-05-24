@@ -30,19 +30,57 @@ def game_again():
     starting_number = 0
     print(f"{player}369遊戲開始囉")
     print("遊戲起始數字為1")
+    game_over = 0
+    Numeric_input_confirmation = 0
     while True:
+        if game_over == 1:
+            break
         starting_number = starting_number + 1
         print(starting_number)
         while True:
             try:
-                clap_choice = input("是否要拍手?要拍手選1，不要拍手選2: ")
+                if game_over == 1:
+                    break
+                clap_choice = int(input("是否要拍手?要拍手選1，不要拍手選2: "))
                 if clap_choice in [1, 2]:
                     if clap_choice == 1:
-                        if starting_number % 3 = 0:
-                            clap_choice = 0
+                        if starting_number % 3 == 0:
+                            clap_choice = 10000000000000000
                             break
                         else:
                             game_over = 1
+                            clap_choice = 10000000000000000
                             break
-                            
-                        
+                    elif clap_choice == 2:
+                        clap_choice = 10000000000000000
+                        Numeric_input_confirmation = 10000000000000000
+                        break
+                    elif clap_choice == 10000000000000000
+                        break
+                elif game_over == 1:
+                    break
+                elif clap_choice == 10000000000000000:
+                    break
+                else:
+                    print("輸入錯誤，要拍手選1，不要拍手選2")
+            except ValueError:
+                print("輸入語法錯誤，要拍手選1，不要拍手選2")
+        while True:
+            try:
+                if Numeric_input_confirmation == 0:
+                    break
+                elif game_over == 1:
+                    break
+                digital_confirmation = int(input("請輸入當下的數字"))
+                if digital_confirmation == starting_number:
+                    print(f"{player}:" + starting_number)
+                    break
+                else:
+                    game_over = 1
+                    break
+            except ValueError:
+                print("輸入格式錯誤，請輸入當下的數字")
+        while True:
+            try:
+                if game_over:
+

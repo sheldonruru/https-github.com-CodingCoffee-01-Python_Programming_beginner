@@ -1,0 +1,48 @@
+player = input("請輸入你的玩家名稱: ")
+print(f"{player}歡迎來到369遊戲")
+print("只要在3的倍數按下且拍手鍵不失誤直到50就獲得勝利")
+print("只要打錯數字或者沒有選擇拍手鍵就會遊戲結束")
+print("不是3的倍數就請打出當下的數字")
+print("例如當下的數字是1就打出1")
+print("又或者當下的數字是3就選擇拍手")
+print("和你比賽的AI會有不同的強度")
+print("強度一的AI有25分之1的機率會打錯數字，50分之1的機率會沒拍手")
+print("強度二的AI有50分之1的機率會打錯數字，100分之1的機率會沒拍手")
+print("強度三的AI則幾乎完全不會失誤")
+print(f"{player}，現在請你輸入阿拉伯數字來選擇AI強度")
+def game_again():
+    while True:
+        try:
+            AI_strength = int(input(f"{player}，請輸入你選擇的AI強度"))
+            if AI_strength in [1 , 2, 3]:
+                AI_guess_upper_limit = 1
+                break
+            else:
+                print("輸入錯誤，請輸入數字1or2or3")
+        except ValueError:
+            print("輸入格式錯誤，請輸入數字1or2or3")
+    if AI_strength == 1:
+        AI_guess_upper_limit = 25
+    elif AI_strength == 2:
+        AI_guess_upper_limit = 50
+    else:
+        AI_guess_upper_limit = 10000000000000000
+    starting_number = 0
+    print(f"{player}369遊戲開始囉")
+    print("遊戲起始數字為1")
+    while True:
+        starting_number = starting_number + 1
+        print(starting_number)
+        while True:
+            try:
+                clap_choice = input("是否要拍手?要拍手選1，不要拍手選2: ")
+                if clap_choice in [1, 2]:
+                    if clap_choice == 1:
+                        if starting_number % 3 = 0:
+                            clap_choice = 0
+                            break
+                        else:
+                            game_over = 1
+                            break
+                            
+                        
